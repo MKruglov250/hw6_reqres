@@ -8,7 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 @Log4j2
-public class StatusCodeTests extends BaseTest {
+public class StatusCodeTest extends BaseTest {
 
     @AfterMethod(description = "Log symbols")
     public void logDivision(){
