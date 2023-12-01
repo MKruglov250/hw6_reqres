@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import io.restassured.RestAssured;
 import org.example.models.JobUser;
 import org.example.models.RegisterUser;
+import org.testng.annotations.AfterMethod;
 
 public class BaseTest {
 
@@ -15,6 +16,11 @@ public class BaseTest {
     JobUser patchUser = new JobUser("peter", "student", "", "");
     RegisterUser regUser = new RegisterUser("eve.holt@reqres.in","12345");
     RegisterUser badUser = new RegisterUser("mark@mail.com","");
+
+    @AfterMethod
+    public void restoreSpecification(){
+        requests.restoreSpecification();
+    }
 
     public BaseTest() {
         gson = new GsonBuilder()

@@ -18,7 +18,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: GET List Users")
     public void getUsers(){
         log.info("Checking Status Code for List Users request");
-        Response response = requests.getUsers(2);
+        Response response = requests.getUsers(2, HttpStatus.SC_OK);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_OK);
@@ -27,7 +27,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: GET Single User")
     public void getSingleUser(){
         log.info("Checking Status Code for Single User request");
-        Response response = requests.getSingleUser(2);
+        Response response = requests.getSingleUser(2, HttpStatus.SC_OK);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_OK);
@@ -36,7 +36,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: GET Single User Not Found")
     public void getSingleUserNotFound(){
         log.info("Checking Status Code for non-existing Single User request");
-        Response response = requests.getSingleUser(23);
+        Response response = requests.getSingleUser(23, HttpStatus.SC_NOT_FOUND);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_NOT_FOUND);
@@ -45,7 +45,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: GET Resources")
     public void getResources(){
         log.info("Checking Status Code for all Resources request");
-        Response response = requests.getResources();
+        Response response = requests.getResources(HttpStatus.SC_OK);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_OK);
@@ -54,7 +54,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: GET Single Resource")
     public void getSingleResources(){
         log.info("Checking Status Code for single Resource request");
-        Response response = requests.getSingleResource(2);
+        Response response = requests.getSingleResource(2, HttpStatus.SC_OK);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_OK);
@@ -63,7 +63,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: GET Single Resource not found")
     public void getResourcesNotFound(){
         log.info("Checking Status Code for non-existing Resource");
-        Response response = requests.getSingleResource(23);
+        Response response = requests.getSingleResource(23, HttpStatus.SC_NOT_FOUND);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_NOT_FOUND);
@@ -72,7 +72,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: POST For Create User")
     public void postCreateUser(){
         log.info("Checking Status Code for Create User request");
-        Response response = requests.postCreateUser(user);
+        Response response = requests.postCreateUser(user, HttpStatus.SC_CREATED);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_CREATED);
@@ -81,7 +81,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: PUT For Update User")
     public void putUpdateUser(){
         log.info("Checking Status Code for Update User (PUT) request");
-        Response response = requests.putUpdateUser(putUser);
+        Response response = requests.putUpdateUser(putUser, HttpStatus.SC_OK);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_OK);
@@ -90,7 +90,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: PATCH For Update User")
     public void patchUpdateUser(){
         log.info("Checking Status Code for Update User (PATCH) request");
-        Response response = requests.patchUpdateUser(patchUser);
+        Response response = requests.patchUpdateUser(patchUser, HttpStatus.SC_OK);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_OK);
@@ -108,7 +108,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: POST for Register Successful")
     public void registerSuccess(){
         log.info("Checking Status Code for Register (successful)");
-        Response response = requests.registerUser(regUser);
+        Response response = requests.registerUser(regUser, HttpStatus.SC_OK);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_OK);
@@ -117,7 +117,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: POST for Register Fail")
     public void registerFail(){
         log.info("Checking Status Code for Register (failed)");
-        Response response = requests.registerUser(badUser);
+        Response response = requests.registerUser(badUser, HttpStatus.SC_BAD_REQUEST);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST);
@@ -126,7 +126,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: POST for Login Success")
     public void loginSuccess(){
         log.info("Checking Status Code for Login (successful)");
-        Response response = requests.loginUser(regUser);
+        Response response = requests.loginUser(regUser, HttpStatus.SC_OK);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_OK);
@@ -135,7 +135,7 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: POST for Login Fail")
     public void loginFail(){
         log.info("Checking Status Code for Register (failed)");
-        Response response = requests.loginUser(badUser);
+        Response response = requests.loginUser(badUser, HttpStatus.SC_BAD_REQUEST);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_BAD_REQUEST);
@@ -144,10 +144,9 @@ public class StatusCodeTest extends BaseTest {
     @Test(description = "Check Status Code: GET List Users with Delay")
     public void getUsersDelay(){
         log.info("Checking Status Code for List Users request");
-        Response response = requests.getUsersDelay(2,3);
+        Response response = requests.getUsersDelay(2,3, HttpStatus.SC_OK);
         int statusCode = response.statusCode();
         log.info("Status code is: " + statusCode);
         Assert.assertEquals(statusCode, HttpStatus.SC_OK);
     }
-
 }

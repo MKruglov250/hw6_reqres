@@ -2,6 +2,7 @@ package org.example;
 
 import io.restassured.response.Response;
 import lombok.extern.log4j.Log4j2;
+import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -20,7 +21,7 @@ public class StructureTest extends BaseTest {
     @Test(description = "Check Model: GET List Users request")
     public void getUsers(){
         log.info("Checking Model for List Users request");
-        Response response = requests.getUsers(2);
+        Response response = requests.getUsers(2, HttpStatus.SC_OK);
         log.info("Check response matches schema: List Users");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("models/listUsers.json"));
@@ -29,7 +30,7 @@ public class StructureTest extends BaseTest {
     @Test(description = "Check Model: GET Single User request")
     public void getSingleUser(){
         log.info("Checking Model for Single User request");
-        Response response = requests.getSingleUser(12);
+        Response response = requests.getSingleUser(12, HttpStatus.SC_OK);
         log.info("Check response matches schema: Single User");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("models/singleUser.json"));
@@ -38,7 +39,7 @@ public class StructureTest extends BaseTest {
     @Test(description = "Check Model: GET Resources request")
     public void getResources(){
         log.info("Checking Model for all Resources request");
-        Response response = requests.getResources();
+        Response response = requests.getResources(HttpStatus.SC_OK);
         log.info("Check response matches schema: List Resources");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("models/listResources.json"));
@@ -47,7 +48,7 @@ public class StructureTest extends BaseTest {
     @Test(description = "Check Model: GET Single Resource request")
     public void getSingleResource(){
         log.info("Checking Model for single Resource request");
-        Response response = requests.getSingleResource(2);
+        Response response = requests.getSingleResource(2, HttpStatus.SC_OK);
         log.info("Check response matches schema: Single Resource");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("models/singleResource.json"));
@@ -56,7 +57,7 @@ public class StructureTest extends BaseTest {
     @Test(description = "Check Model: POST For Create User request")
     public void postCreateUser(){
         log.info("Checking Model for Create User request");
-        Response response = requests.postCreateUser(user);
+        Response response = requests.postCreateUser(user, HttpStatus.SC_CREATED);
         log.info("Check response matches schema: User Created");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("models/jobsUserCreated.json"));
@@ -66,7 +67,7 @@ public class StructureTest extends BaseTest {
     @Test(description = "Check Model: PUT For Update User request")
     public void putUpdateUser(){
         log.info("Checking Model for Update User (PUT) request");
-        Response response = requests.putUpdateUser(putUser);
+        Response response = requests.putUpdateUser(putUser, HttpStatus.SC_OK);
         log.info("Check response matches schema: User Updated");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("models/jobsUserUpdated.json"));
@@ -75,7 +76,7 @@ public class StructureTest extends BaseTest {
     @Test(description = "Check Model: PATCH For Update User request")
     public void patchUpdateUser(){
         log.info("Checking Model for Update User (PATCH) request");
-        Response response = requests.patchUpdateUser(patchUser);
+        Response response = requests.patchUpdateUser(patchUser, HttpStatus.SC_OK);
         log.info("Check response matches schema: User Updated");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("models/jobsUserUpdated.json"));
@@ -85,7 +86,7 @@ public class StructureTest extends BaseTest {
     @Test(description = "Check Model: POST for Register request")
     public void registerSuccess(){
         log.info("Checking Model for Register (successful)");
-        Response response = requests.registerUser(regUser);
+        Response response = requests.registerUser(regUser, HttpStatus.SC_OK);
         log.info("Check response matches schema: Register new user");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("models/regUser.json"));
@@ -95,7 +96,7 @@ public class StructureTest extends BaseTest {
     @Test(description = "Check Model: POST for Login request")
     public void loginSuccess(){
         log.info("Checking Model for Login (successful)");
-        Response response = requests.loginUser(regUser);
+        Response response = requests.loginUser(regUser, HttpStatus.SC_OK);
         log.info("Check response matches schema: Login with existing user");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("models/logUser.json"));
@@ -105,7 +106,7 @@ public class StructureTest extends BaseTest {
     @Test(description = "Check Model: GET List Users with Delay request")
     public void getUsersDelay(){
         log.info("Checking Model for List Users request");
-        Response response = requests.getUsersDelay(2,3);
+        Response response = requests.getUsersDelay(2,3, HttpStatus.SC_OK);
         log.info("Check response matches schema: List Users");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("models/listUsers.json"));
