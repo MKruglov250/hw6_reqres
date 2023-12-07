@@ -26,6 +26,7 @@ public class BaseApi {
     public Response get(String endpoint, int expectedCode){
         return requestSpecification.when()
                 .get(endpoint).then().statusCode(expectedCode)
+                .contentType(ContentType.JSON)
                 .extract().response();
     }
 

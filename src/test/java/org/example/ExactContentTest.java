@@ -8,6 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import java.io.File;
+
 import static org.hamcrest.Matchers.*;
 
 @Log4j2
@@ -50,6 +51,7 @@ public class ExactContentTest extends BaseTest{
         response.then().assertThat()
                 .body("",equalTo(expectedJson.getMap("")));
     }
+
 
     @Test(description = "Exact Content: GET Single Resource, assert full JSON")
     public void getSingleResourceFull(){
