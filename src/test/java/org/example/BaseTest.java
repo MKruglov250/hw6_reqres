@@ -13,7 +13,7 @@ public class BaseTest {
     Requests requests = new Requests();
     JobUser user = new JobUser("morpheus", "leader", "", "");
     JobUser putUser = new JobUser("peter", "hero", "", "");
-    JobUser patchUser = new JobUser("peter", "student", "", "");
+    JobUser patchUser = new JobUser("harry", "wizard", "", "");
     RegisterUser regUser = new RegisterUser("eve.holt@reqres.in","12345");
     RegisterUser badUser = new RegisterUser("mark@mail.com","");
 
